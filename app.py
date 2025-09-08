@@ -2,12 +2,14 @@ import streamlit as st
 import pickle
 import pandas as pd
 from matplotlib import pyplot as plt
+from pathlib import path
 from vectorizer import(
     plot_label_distribution,
     plot_article_length_histogram,
     plot_label_pie_chart
 )
 
+model_path = path("models/model.pkl")
 with open("models/model.pkl", "rb") as f:
     model = pickle.load(f)
 
@@ -72,4 +74,5 @@ if st.button("Predict"):
         st.subheader("🧾 Result:")
         st.success("✅ Real News") if pred == 1 else st.error("❌ Fake News")
     else:
+
         st.warning("Please enter a news article.")  
